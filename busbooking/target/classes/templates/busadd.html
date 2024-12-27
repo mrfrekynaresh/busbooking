@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Bus Management</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h2 class="mb-4">Add Bus Details</h2>
+		<form action="add" method="post">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="Enter bus name" required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="number">Number</label>
+					<input type="number" class="form-control" id="number" name="number" placeholder="Enter bus number"
+						required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="set">Seats</label>
+					<input type="number" class="form-control" id="set" name="set" placeholder="Enter number of seats"
+						required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="acnot">AC Availability</label>
+					<select class="form-control" id="acnot" name="acnot" required>
+						<option value="" disabled selected>Select option</option>
+						<option value="AC">AC</option>
+						<option value="Non-AC">Non-AC</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="start">Start Location</label>
+					<input type="text" class="form-control" id="start" name="start" placeholder="Enter start location"
+						required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="end">End Location</label>
+					<input type="text" class="form-control" id="end" name="end" placeholder="Enter end location"
+						required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="date">Journey Date</label>
+					<input type="date" class="form-control" id="date" name="date" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="starttime">Start Time</label>
+					<input type="time" class="form-control" id="starttime" name="starttime" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="endtime">End Time</label>
+					<input type="time" class="form-control" id="endtime" name="endtime" required>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Add Bus</button>
+		</form>
+		<hr class="my-4">
+		<h2 class="mb-4">Manage Buses</h2>
+		<form action="busshow" method="get">
+			<button type="submit" class="btn btn-danger">Delete Bus</button>
+		</form>
+	</div>
+	<!-- Bootstrap JS and dependencies (placed before the closing </body> tag) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

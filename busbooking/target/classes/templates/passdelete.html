@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Passenger Details</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<style>
+		body {
+			background-color: #f8f9fa;
+			padding: 20px;
+		}
+
+		.container {
+			margin-top: 20px;
+		}
+
+		table {
+			background-color: #ffffff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.form-section {
+			margin-top: 30px;
+			padding: 20px;
+			background-color: #ffffff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+		}
+
+		.btn-custom {
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h2 class="text-center text-primary mb-4">Passenger Details</h2>
+
+		<!-- Passenger Table -->
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>NAME</th>
+					<th>AGE</th>
+					<th>GENDER</th>
+					<th>ADULT/CHILD</th>
+					<th>ID CARD TYPE</th>
+					<th>ID CARD NUMBER</th>
+					<th>BUS NUMBER</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pass : ${passadd}">
+					<td th:text="${pass.Name}">NAME</td>
+					<td th:text="${pass.Age}">AGE</td>
+					<td th:text="${pass.Gender}">GENDER</td>
+					<td th:text="${pass.Adult_chlid}">ADULT/CHILD</td>
+					<td th:text="${pass.Id_card_type}">ID CARD TYPE</td>
+					<td th:text="${pass.Id_card_number}">ID CARD NUMBER</td>
+					<td th:text="${pass.Bus_num}">BUS NUMBER</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- Delete Passenger Form -->
+		<div class="form-section">
+			<h4 class="text-center text-danger">Delete Passenger</h4>
+			<form action="deletepass" method="get" id="deleteForm">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+						required>
+				</div>
+				<div class="form-group">
+					<label for="busnum">Bus Number:</label>
+					<input type="text" class="form-control" id="busnum" name="busnum"
+						placeholder="Enter your bus number" required>
+				</div>
+				<button type="submit" class="btn btn-danger btn-custom">Delete Now</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Custom JavaScript -->
+	<script>
+		document.getElementById('deleteForm').addEventListener('submit', function (e) {
+			if (!confirm('Are you sure you want to delete this passenger?')) {
+				e.preventDefault();
+			}
+		});
+	</script>
+</body>
+
+</html>

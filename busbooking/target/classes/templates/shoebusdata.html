@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bus Details</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<style>
+		body {
+			background-color: #f8f9fa;
+			padding: 20px;
+		}
+
+		table {
+			background-color: #ffffff;
+			border-collapse: collapse;
+			width: 100%;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		th {
+			cursor: pointer;
+		}
+
+		.search-container {
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h2 class="text-center text-primary mb-4">Bus Details</h2>
+
+		<!-- Search Bar -->
+		<div class="search-container">
+			<input type="text" id="searchInput" class="form-control" placeholder="Search for Bus Name or Number...">
+		</div>
+
+		<!-- Bus Table -->
+		<table class="table table-bordered table-striped" id="busTable">
+			<thead class="thead-dark">
+				<tr>
+					<th onclick="sortTable(0)">Bus Name</th>
+					<th onclick="sortTable(1)">Bus Number</th>
+					<th>Bus Set</th>
+					<th>Bus Start</th>
+					<th>Bus End</th>
+					<th>AC or Not</th>
+					<th>Bus Date</th>
+					<th>Bus Start Time</th>
+					<th>Bus End Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bus : ${list}">
+					<td th:text="${bus.Bus_name}">Bus Name</td>
+					<td th:text="${bus.Bus_number}">Bus Number</td>
+					<td th:text="${bus.Bus_set}">Bus Set</td>
+					<td th:text="${bus.Bus_Start}">Bus Start</td>
+					<td th:text="${bus.Bus_end}">Bus End</td>
+					<td th:text="${bus.Ac_not}">AC or Not</td>
+					<td th:text="${bus.Bus_date}">Bus Date</td>
+					<td th:text="${bus.Bus_start_time}">Bus Start Time</td>
+					<td th:text="${bus.Bus_end_time}">Bus End Time</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Custom JavaScript -->
+	<script>
+		// Search functionality
+		document.getElementById('searchInput').addEventListener('keyup', function () {
+			var input = document.getElementById('searchInput').value.toLowerCase();
+			var rows = document.getElementById('busTable').getElementsByTagName('tr');
+
+			for (var i = 1; i < rows.length; i++) {
+				var busName = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+				var busNumber = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+				if (busName.includes(input) || busNumber.includes(input)) {
+					rows[i].style.display = '';
+				} else {
+					rows[i].style.display = 'none';
+				}
+			}
+		});
+
+		// Sort functionality
+		function sortTable(columnIndex) {
+			var table = document.getElementById('busTable');
+			var rows = Array.from(table.rows).slice(1);
+			var isAscending = table.dataset.sortOrder === 'asc';
+			table.dataset.sortOrder = isAscending ? 'desc' : 'asc';
+
+			rows.sort(function (a, b) {
+				var cellA = a.cells[columnIndex].textContent.trim().toLowerCase();
+				var cellB = b.cells[columnIndex].textContent.trim().toLowerCase();
+
+				if (cellA < cellB) return isAscending ? -1 : 1;
+				if (cellA > cellB) return isAscending ? 1 : -1;
+				return 0;
+			});
+
+			rows.forEach(row => table.tBodies[0].appendChild(row));
+		}
+	</script>
+</body>
+
+</html> 

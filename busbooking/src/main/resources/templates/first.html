@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bus Management System</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<style>
+		body {
+			padding: 20px;
+			background-color: #f8f9fa;
+		}
+
+		.container {
+			max-width: 600px;
+			margin: 50px auto;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.btn-custom {
+			width: 100%;
+			padding: 10px;
+			font-size: 18px;
+		}
+
+		.header {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		.alert {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h2 class="header text-primary">Bus Management System</h2>
+
+		<!-- Search Bus Form -->
+		<form action="search" method="post">
+			<div class="form-group">
+				<label for="start">Bus Start:</label>
+				<input type="text" class="form-control" id="start" name="start" placeholder="Enter bus start" required>
+			</div>
+			<div class="form-group">
+				<label for="end">Bus End:</label>
+				<input type="text" class="form-control" id="end" name="end" placeholder="Enter bus end" required>
+			</div>
+			<button type="submit" class="btn btn-primary btn-custom">Search</button>
+		</form>
+
+		<!-- Login Button -->
+		<form action="login" method="get">
+			<button type="submit" class="btn btn-secondary btn-custom">Login</button>
+		</form><br>
+
+		<!-- Bus Information Button -->
+		<form action="show" method="get">
+			<button type="submit" class="btn btn-success btn-custom">Bus Information</button>
+		</form><br>
+
+		<!-- Booking List Button -->
+		<form action="passlist" method="get">
+			<button type="submit" class="btn btn-warning btn-custom">Booking List</button>
+		</form>
+
+		<!-- Optional alert message -->
+		<div class="alert alert-danger" role="alert" id="errorAlert">
+			<strong>Error:</strong> Something went wrong. Please try again later.
+		</div>
+	</div>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Custom JavaScript -->
+	<script>
+		// Example of showing the error alert message
+		setTimeout(function () {
+			document.getElementById("errorAlert").style.display = "block";
+		}, 3000); // Show error alert after 3 seconds
+	</script>
+</body>
+
+</html>

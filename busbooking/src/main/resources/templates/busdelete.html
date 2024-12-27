@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bus Information</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center">Bus Information</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Bus Name</th>
+                    <th>Bus Number</th>
+                    <th>Bus Set</th>
+                    <th>Bus Start</th>
+                    <th>Bus End</th>
+                    <th>AC or Not</th>
+                    <th>Bus Date</th>
+                    <th>Bus Start Time</th>
+                    <th>Bus End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bus : ${listshow}">
+                    <td th:text="${bus.Bus_name}">Bus Name</td>
+                    <td th:text="${bus.Bus_number}">Bus Number</td>
+                    <td th:text="${bus.Bus_set}">Bus Set</td>
+                    <td th:text="${bus.Bus_Start}">Bus Start</td>
+                    <td th:text="${bus.Bus_end}">Bus End</td>
+                    <td th:text="${bus.Ac_not}">AC or Not</td>
+                    <td th:text="${bus.Bus_date}">Bus Date</td>
+                    <td th:text="${bus.Bus_start_time}">Bus Start Time</td>
+                    <td th:text="${bus.Bus_end_time}">Bus End Time</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Form for Deleting Bus -->
+        <h3 class="text-center">Delete Bus</h3>
+        <form action="deletebus" method="get" id="deleteBusForm">
+            <div class="form-group">
+                <label for="busname">Bus Name:</label>
+                <input type="text" class="form-control" id="busname" name="busname" placeholder="Enter Bus Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="busnum">Bus Number:</label>
+                <input type="text" class="form-control" id="busnum" name="busnum" placeholder="Enter Bus Number" required>
+            </div>
+
+            <button type="submit" class="btn btn-danger btn-block">Delete Now</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Optional JavaScript for Form Validation -->
+    <script>
+        // Simple form validation
+        document.getElementById('deleteBusForm').addEventListener('submit', function (e) {
+            var busName = document.getElementById('busname').value.trim();
+            var busNum = document.getElementById('busnum').value.trim();
+            
+            if (!busName || !busNum) {
+                e.preventDefault();
+                alert("Please enter both Bus Name and Bus Number.");
+            }
+        });
+    </script>
+</body>
+
+</html>

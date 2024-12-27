@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Bus Booking System</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h2 class="mb-4">Available Buses</h2>
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th>Bus Name</th>
+						<th>Bus Number</th>
+						<th>Seats</th>
+						<th>Start Location</th>
+						<th>End Location</th>
+						<th>AC Availability</th>
+						<th>Journey Date</th>
+						<th>Start Time</th>
+						<th>End Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="bus : ${bussearch}">
+						<td th:text="${bus.Bus_name}">Bus Name</td>
+						<td th:text="${bus.Bus_number}">Bus Number</td>
+						<td th:text="${bus.Bus_set}">Seats</td>
+						<td th:text="${bus.Bus_Start}">Start Location</td>
+						<td th:text="${bus.Bus_end}">End Location</td>
+						<td th:text="${bus.Ac_not}">AC Availability</td>
+						<td th:text="${bus.Bus_date}">Journey Date</td>
+						<td th:text="${bus.Bus_start_time}">Start Time</td>
+						<td th:text="${bus.Bus_end_time}">End Time</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="container mt-5">
+		<h2 class="mb-4">Book a Bus</h2>
+		<form action="booking" method="post">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+						required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="age">Age</label>
+					<input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="gender">Gender</label>
+					<select class="form-control" id="gender" name="gender" required>
+						<option value="" disabled selected>Select gender</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Other">Other</option>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="id_card_type">ID Card Type</label>
+					<input type="text" class="form-control" id="id_card_type" name="id_card_type"
+						placeholder="Enter your ID type" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="id_card_number">ID Card Number</label>
+					<input type="text" class="form-control" id="id_card_number" name="id_card_number"
+						placeholder="Enter your ID number" required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="adult_child">Passenger Type</label>
+					<select class="form-control" id="adult_child" name="adult_child" required>
+						<option value="" disabled selected>Select type</option>
+						<option value="Adult">Adult</option>
+						<option value="Child">Child</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="bus_num">Bus Number</label>
+				<input type="text" class="form-control" id="bus_num" name="bus_num" placeholder="Enter bus number"
+					required>
+			</div>
+			<button type="submit" class="btn btn-primary">Book Now</button>
+		</form>
+	</div>
+	<!-- Bootstrap JS and dependencies (placed before the closing </body> tag) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
